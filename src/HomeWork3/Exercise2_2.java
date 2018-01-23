@@ -3,26 +3,21 @@ package HomeWork3;
 import java.util.Scanner;
 
 public class Exercise2_2 {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int max = scanner.nextInt();
-        int a = 2;
-        int numberFibonnachi = 0;
-
-        while (a <= max) {
-            System.out.println(numberFibonnachi);
-            if (numberFibonnachi == 0) {
-                numberFibonnachi = 1;
-            } else {
-                numberFibonnachi = fibonnachi(a);
-                a = numberFibonnachi;
-            }
+        while (scanner.hasNextInt()) {
+            int max = scanner.nextInt();
+            fibonnachi(0, 0, max);
         }
     }
-    private static int fibonnachi (int value) {
-        if (value == 0) return 0;
-        if (value == 1) return 1;
-        return fibonnachi(value - 1) + fibonnachi(value - 2);
+
+    private static void fibonnachi(int prevValue, int currentValue, int stopValue) {
+        if (currentValue < stopValue) {
+            boolean isFirst = currentValue == 0;
+            System.out.printf(isFirst ? "%d" : ", %d", currentValue);
+            fibonnachi(isFirst ? 1 : currentValue, isFirst ? 1 : currentValue + prevValue, stopValue);
+        }
     }
 }
 
